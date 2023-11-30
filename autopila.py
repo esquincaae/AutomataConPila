@@ -5,7 +5,7 @@ class AutomataDePila:
         self.current_state = 'q0'
         self.stack = ['Z']  # Pila con símbolo inicial Z
         self.transitions = {
-            # Transiciones actualizadas con categorías
+            # Transiciones para manejar las diferentes partes de la declaración de variable
             ('q0', 'VR', 'Z'): ('q1', 'Z'),
             ('q1', 'T', 'Z'): ('q2', 'Z'),
             ('q2', 'LETTER', 'Z'): ('q3', 'Z'),
@@ -13,8 +13,9 @@ class AutomataDePila:
             ('q4', 'DIGIT', 'Z'): ('q5', 'Z'), 
             ('q4', 'FLOAT', 'Z'): ('q5', 'Z'),
             ('q4', 'VB', 'Z'): ('q5', 'Z'),
+            ('q4', 'STRING', 'Z'): ('q5', 'Z'),  # Transición para una cadena completa
             ('q5', 'PC', 'Z'): ('qf', 'Z'),
-            # Añadir más transiciones según sea necesario
+            # Agregar más transiciones según sea necesario
         }
 
     def transition(self, symbol):
@@ -43,9 +44,10 @@ class AutomataDePila:
             process_symbol('DIGIT')
         elif self.is_float(symbol):
             process_symbol('FLOAT')
+        elif symbol.startswith('"') and symbol.endswith('"'):
+            process_symbol('STRING')  # Manejo de cadenas completas
         elif symbol == ';':
             process_symbol('PC')
-        # Añadir más lógica según sea necesario
 
     def is_float(self, string):
         try:
@@ -68,7 +70,8 @@ class AutomataDePila:
         return False
 
 def submit():
-    tokens = entry.get().split(" ")
+    # Obtener el texto del área de texto
+    tokens = text_area.get("1.0", "end-1c").split(" ")
     result = automata.process(tokens)
     result_label.config(text="Cadena aceptada" if result else "Cadena rechazada")
 
@@ -81,8 +84,9 @@ automata = AutomataDePila()
 entry_label = tk.Label(root, text="Ingrese la declaración de variable:")
 entry_label.pack()
 
-entry = tk.Entry(root, width=50)
-entry.pack()
+# Usando Text en lugar de Entry para entrada de texto
+text_area = tk.Text(root, height=5, width=50)
+text_area.pack()
 
 submit_button = tk.Button(root, text="Procesar", command=submit)
 submit_button.pack()
