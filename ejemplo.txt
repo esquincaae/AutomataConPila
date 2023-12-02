@@ -1,0 +1,1 @@
+var ent a = 1 ; funcion b ( ) { contenido }
