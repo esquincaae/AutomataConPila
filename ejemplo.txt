@@ -1,2 +1,16 @@
-var booleano bandera = false ; funcion main ( ) { contenido }
+#ejemplos de variables
+var flot pi = 3 . 14 ; 
 
+
+funcion main ( ) { contenido }
+
+
+
+si ( 5 >= 4 ) { contenido }
+
+
+si ( 5 >= 4 ) { contenido } sino { contenido }
+
+
+
+para ( var ent i = 0 ; i < 7 ; i ++ ) { contenido }
