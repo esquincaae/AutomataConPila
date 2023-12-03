@@ -1,16 +1,16 @@
 #ejemplos de variables
 var flot pi = 3 . 14 ; 
 
-
+#ejemplo de funcion
 funcion main ( ) { contenido }
 
 
-
+#ejemplo del if
 si ( 5 >= 4 ) { contenido }
 
-
+#ejemplo de if else
 si ( 5 >= 4 ) { contenido } sino { contenido }
 
 
-
+#ejemplo de for
 para ( var ent i = 0 ; i < 7 ; i ++ ) { contenido }
