@@ -64,6 +64,7 @@ class Automata:
         self.stack = []
 
     def next_state(self):
+        text_area.delete('1.0', tk.END) 
         # Obtiene el input_type de la cima de la pila
         if not self.stack:
             raise ValueError("La pila está vacía")
@@ -79,22 +80,25 @@ class Automata:
                 self.current_state = 'SCI1'
             else:
                 raise ValueError("Cima de la pila invalida")
-            
         while self.stack:
             print(f'estado actural: [{self.current_state}] Lyra: {self.stack}')
             text_area.insert(tk.END, f"Lyra: {self.stack}\n")
-            dato = self.stack
             input_type = self.stack.pop()
-            # Clave de transición usando el estado actual y el input_type de la pila
+            bpop = self.current_state 
             transition_key = (self.current_state, input_type)
             transition = self.transitions.get(transition_key)
             if transition is None:
                 messagebox.showerror("ERROR",f"Transición no encontrada para: {transition_key}")
             next_state, action = transition
             self.current_state = next_state
-        print(f'estado actural: [{self.current_state}] Lyra: {self.stack}')
-        text_area.insert(tk.END, f"Lyra: {self.stack}\n")
-        messagebox.showinfo('Lyra', f'Cadena {dato} Valida')
+            bpop1 = self.current_state
+        if bpop1 == 'SC10' or bpop1 == 'SFF' or bpop1 == 'SVF':
+            print(f'estado actual: [{self.current_state}] Lyra: {self.stack}')
+            text_area.insert(tk.END, f"Lyra: {self.stack}\n")
+            messagebox.showinfo('Lyra', 'Cadena Valida')
+        else:
+            messagebox.showerror("ERROR",f"No se puede terminar en: {bpop}")
+
         return next_state, action
 
     def procesar_entrada(self, entrada):
