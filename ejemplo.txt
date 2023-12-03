@@ -1,1 +1,2 @@
-var ent a = 1 ; funcion b ( ) { contenido }
+var booleano bandera = false ; funcion main ( ) { contenido }
+
