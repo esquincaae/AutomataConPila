@@ -36,7 +36,6 @@ class Automata:
             ('SC5', 'N'): ('SC6', 'X2'), #5
             ('SC6', 'X2'): ('SC7', 'X3'), #6
             ('SC7', 'X3'): ('SC8', 'X5'), 
-
             ('SC8', 'X5'): ('SC9', 'X4'), 
             ('SC9', 'X4'): ('SC10', 'EL'), # Entrar en el bloque del 'sino'
             ('SC10', 'EL'): ('SC11', 'X3'),  
@@ -102,7 +101,6 @@ class Automata:
         return next_state, action
 
     def procesar_entrada(self, entrada):
-        # Definir los tipos de tokens
         tokens = {
             'VR': ["var"],
             'T': ["ent", "flot", "booleano", "cadena"],
@@ -126,7 +124,7 @@ class Automata:
         }
 
         palabras = entrada.split()
-        palabras.reverse()  # Invierte el orden de las palabras
+        palabras.reverse()  
 
         for palabra in palabras:
             simbolo_encontrado = False
@@ -144,7 +142,6 @@ class Automata:
 
         return ' '.join(self.stack)
 
-# Funciones para la interfaz gráfica
 def procesar():
       
     entrada = entry.get()
@@ -156,19 +153,15 @@ def procesar():
     automata.next_state()
     
 
-# Crea y configura widgets
 root = tk.Tk()
 root.title("Lyra: Automata de pila")
 
-# Crear un Entry
 entry = tk.Entry(root, width=100)
 entry.pack(padx=10, pady=10)
 
-# Crear un botón que llame a la función 'procesar'
 boton_procesar = tk.Button(root, text="PROCESAR", command=procesar)
 boton_procesar.pack(padx=10, pady=10)
 
-# Crear un área de texto para la salida
 text_area = tk.Text(root, height=15, width=150)
 text_area.pack(padx=10, pady=10)
 
