@@ -136,7 +136,7 @@ class Automata:
             if not simbolo_encontrado:
                 messagebox.showerror("ERROR",f"Simbolo no encontrado para: {palabra}")
                 exit(0)
-
+                
         if 'DESCONOCIDO' in self.stack:
             messagebox.showerror("ERROR",f"Símbolo desconocido en la entrada: {entrada}")
 
